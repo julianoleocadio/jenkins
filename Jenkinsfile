@@ -6,7 +6,6 @@ pipeline {
             args '--network ci'
         }
     }
-
     environment {
         ORG_NAME = "apipessoas"
         APP_NAME = "apipessoas-java-pipeline"
@@ -15,7 +14,6 @@ pipeline {
         TEST_CONTAINER_NAME = "ci-${APP_NAME}-${BUILD_NUMBER}"
         DOCKER_HUB = credentials("${ORG_NAME}-docker-hub")
     }
-
     stages { 
       stage('Compile') {
              steps {
@@ -23,7 +21,6 @@ pipeline {
                  sh "./mvnw clean compile"
              }
       }
-
       stage('Package') {
              steps {
                  echo "-=- packaging project -=-"
