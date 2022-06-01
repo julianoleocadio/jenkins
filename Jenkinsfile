@@ -45,6 +45,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'git clone https://github.com/julianoleocadio/jenkins.git'
                 sh './mvnw clean install'
             }
         }
