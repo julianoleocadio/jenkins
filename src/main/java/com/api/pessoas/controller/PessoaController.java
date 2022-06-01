@@ -23,6 +23,17 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
+    @GetMapping
+    public ResponseEntity<?> pessoaFindAll(
+            HttpServletRequest request,
+            @RequestHeader HttpHeaders headers
+    ) {
+        var result = pessoaService.findAll();
+        var response = new ResponseEntity<>(result, HttpStatus.OK);
+        var responseLog = new ResponseDto<>(result);
+        APILogger.ok(responseLog.getData(), APILogger.filterHeader(headers));
+        return response;
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> pessoaById(
             HttpServletRequest request,
